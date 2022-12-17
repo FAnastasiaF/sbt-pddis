@@ -1,0 +1,18 @@
+version: '3.9'
+
+services:
+  app:
+    build: ./app
+    image: apptest
+    container_name: app
+    ports:
+      - 5000:5000
+    volumes:
+      - ./app:/app
+  ansible:
+    build: ./ansible
+    command: ansible-playbook docker_playbook.yml -i inventory.yml
+    volumes:
+      - /var/run/docker.sock://var/run/docker.sock
+      - ./app:/app
+      
