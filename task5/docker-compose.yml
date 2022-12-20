@@ -1,0 +1,15 @@
+services:
+  jenkins:
+    user: root
+    image: jenkins/jenkins:lts
+    ports:
+      - 8080:8080
+      - 50000:50000
+    container_name: jenkins
+    volumes:
+      - ./jenkins_data:/var/jenkins_home
+    
+  sonarqube:
+    image: sonarqube:latest
+    ports:
+      - 9000:9000
