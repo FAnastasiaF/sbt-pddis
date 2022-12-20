@@ -12,13 +12,6 @@ pipeline {
                   sh 'mvn clean install'
                 }
             }
-            post {
-                always {
-                    junit(
-                        testResults: 'task5/target/test-results/*.xml'
-                    )
-                }
-            }
         }
         stage("SonarQube") {
             steps {
@@ -50,5 +43,5 @@ pipeline {
                 sh "ansible-playbook -i task5/inventory.yml task5/playbook.yml"
             }
         }
-    }\
+    }
 }
