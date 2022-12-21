@@ -38,9 +38,11 @@ pipeline {
             }
           }
 
-        stage("Deploy PROM") {
+        stage('Deploy Prod') {
             steps {
-                sh "ansible-playbook -i task5/inventory.yml task5/playbook.yml"
+              dir('task5') {
+                sh 'docker run --name prod -d -p "8081:8080" task5';
+              }
             }
         }
     }
